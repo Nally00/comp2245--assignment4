@@ -3,15 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Comp2245 -Assignment 4</title>
+    <title>Comp2245 - Assignment 4</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="app.js"></script>
-</head>
+  </head>
   <body>
-    <div class="search">
-        <h1> Avengers Character Search</h1>
+    <header> 
+      <div class="heading-container">
+        <h1>AVENGERS CHARACTER SEARCH</h1> 
+      </div>
+    </header>          
+    
+    <div class="search-container">
+      <p>Search by Full Name or Alias</p>  
+      <div class="search">
+        <input type="text" name="Search Bar" id="searchBar" placeholder="e.g T'challa or Black Panther" />
         <button id="searchBtn">Search</button>
-    </div>   
+      </div>
+    </div>
+
+  <div class="result-container">
+    <h2>RESULT</h2>
+    <hr> 
+    <div id="result"></div>
+  </div>
+    
   </body>
 </html>

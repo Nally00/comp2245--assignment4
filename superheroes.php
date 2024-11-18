@@ -63,10 +63,41 @@ $superheroes = [
   ], 
 ];
 
+// Sanitize, trim and make user input case senstive
+$search = strtoupper(trim(filter_input(INPUT_GET, 'query', FILTER_SANITIZE_SPECIAL_CHARS)));
+
+// Check if user's input is empty
+if ($search) {
+
+    //filter superheroes array based on the search input
+    $filteredSuperheroes = array_filter($superheroes, function($superhero) use ($search) {
+        // Check if the search matches the name or alias of any of the superheroes
+        return (strpos(strtoupper($superhero['name']), $search) !== false || strpos(strtoupper($superhero['alias']), $search) !== false);
+    });
+
+    // Check if filter results are empty
+    if (!empty($filteredSuperheroes)) {
+        // Loop through each result and display the information
+        foreach ($filteredSuperheroes as $superhero) {
+            echo "<h3>{$superhero['alias']}</h3>";
+            echo "<h4> A.K.A {$superhero['name']}</h4>";
+            echo "<p class='found'>{$superhero['biography']}</p>";
+        }
+    } 
+    else {
+        echo "<p class='not-found'>Superhero not found</p>";  // display error if no matches were found
+    }
+
+} 
+else {
+    // If input is empty, display list of all superheroes in the array
+    echo "<ul>";
+    foreach ($superheroes as $superhero) {
+        echo "<li>{$superhero['name']}</li>";
+        echo "<li>{$superhero['alias']}</li>";
+    }
+    echo "</ul>";
+}
+
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
